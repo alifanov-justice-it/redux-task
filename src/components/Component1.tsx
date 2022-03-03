@@ -25,7 +25,7 @@ class Component1 extends React.Component <Props, State> {
             post
         }
         console.log(newPost)
-        this.props.createPost(newPost)
+        this.props.createPost(newPost.post)
         this.setState({post: ''})
     }
 

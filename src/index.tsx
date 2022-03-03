@@ -3,10 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore, compose } from 'redux';
+import { Provider }from 'react-redux';
+import postsReducer from "./app/postsReducer";
+
+
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(postsReducer, composeEnhancers())
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+        <Provider store={store}>
+            <App />
+        </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -15,3 +32,6 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+
+export default store

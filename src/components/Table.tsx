@@ -15,11 +15,8 @@ function createData(
     return { Name, Description, BearImage };
 }
 
-
-
 export default function BasicTable({data}:any) {
     const rows = data.posts;
-    console.log(rows)
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

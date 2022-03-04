@@ -42,24 +42,21 @@ class Component1 extends React.Component <Props, State> {
         this.props.fetchPosts()
     }
 
-    submitHandler = (event: any) => {
-        event.preventDefault()
-        const {post}:any = this.state
-        const newPost = {
-            post
-        }
-        console.log(newPost)
-        this.props.createPost(newPost.post)
-        this.setState({post: ''})
-    }
-
-    changeInputHandler = (event: any) => {
-        this.setState(state => ({ post: event.target.value }))
-    }
+    // submitHandler = (event: any) => {
+    //     event.preventDefault()
+    //     const {post}:any = this.state
+    //     const newPost = {
+    //         post
+    //     }
+    //     this.props.createPost(newPost.post)
+    //     this.setState({post: ''})
+    // }
+    //
+    // changeInputHandler = (event: any) => {
+    //     this.setState(state => ({ post: event.target.value }))
+    // }
 
     render() {
-        const allPosts:any = this.props.posts || []
-        console.log(this.props)
         if (!this.props.app.loading) {
             return(
                 <div>

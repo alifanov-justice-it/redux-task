@@ -1,0 +1,18 @@
+.component1_posts-box{
+    display: flex;
+    border: solid 1px black;
+    font-weight: 12;
+    font-size: small;
+}
+
+.component1_posts-name{
+    border-right: 1px solid black;
+}
+
+.component1_posts-attenuation_level{
+    border-right: 1px solid black;
+}
+
+.component1_description{
+
+}

@@ -1,4 +1,4 @@
-import {ACTION_1, ACTION_2} from "./types";
+import {ACTION_1, ACTION_2, REQUEST_POSTS, HIDE_LOADER, SHOW_LOADER} from "./types";
 
 export function createPost(post: any): any {
     return {
@@ -6,9 +6,33 @@ export function createPost(post: any): any {
         payload: post
     }
 }
-export function deletePost(post: any) {
+
+export function fetchPosts(): any {
     return {
-        type: ACTION_2,
-        payload: post
+        type: REQUEST_POSTS
+    }
+
+    // return async (dispatch:any) => {
+    //     try{
+    //         dispatch(showLoader())
+    //         const response = await  fetch('https://api.punkapi.com/v2/beers')
+    //         const json = await  response.json()
+    //         await dispatch({ type: ACTION_2, payload: json})
+    //         await setTimeout(dispatch(hideLoader()),10000)
+    //     } catch (e:any) {
+    //         console.log(e)
+    //     }
+    // }
+}
+
+export function showLoader():any {
+    return {
+        type: SHOW_LOADER,
+    }
+}
+
+export function hideLoader():any {
+    return {
+        type: HIDE_LOADER,
     }
 }

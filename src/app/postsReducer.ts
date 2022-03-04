@@ -14,10 +14,9 @@ export default function postsReducer(
 ): any {
     switch (action.type) {
         case ACTION_1:
-            return {posts: [action.payload]};
+            return {...state, post: action.payload};
         case ACTION_2:
-            return {value: action.payload};
-
+            return {...state, posts: action.payload};
         default:
             return state;
     }

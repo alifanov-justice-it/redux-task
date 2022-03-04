@@ -1,13 +1,31 @@
 import React from "react";
 import {connect} from 'react-redux'
-import {createPost} from '../app/action'
+import {createPost, fetchPosts, hideLoader, showLoader} from '../app/action'
+
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+
+function CircularIndeterminate() {
+    return (
+        <Box sx={{ display: 'flex' }}>
+            <CircularProgress />
+        </Box>
+    );
+}
 
 type Props = { //обозначаем типы пропсов
     createPost: typeof createPost,
-    post?: string
-}
+    fetchPosts: typeof fetchPosts,
 
+    showLoader: typeof showLoader,
+    hideLoader: typeof hideLoader,
+    post?: string,
+    posts?: any[],
+    app?: any,
+    loading?: boolean
+}
 interface State {
+    loading: boolean
     post: string
 }
 
@@ -15,9 +33,14 @@ class Component1 extends React.Component <Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            post: ''
+            post: '',
+            loading: false
         }
     }
+    componentDidMount() {
+        this.props.fetchPosts()
+    }
+
     submitHandler = (event: any) => {
         event.preventDefault()
         const {post}:any = this.state
@@ -34,33 +57,60 @@ class Component1 extends React.Component <Props, State> {
     }
 
     render() {
-        return(
-            <form onSubmit={this.submitHandler}>
-                <div className="">
-                    <label htmlFor="title">Зоголовок поста</label>
-                    <input
-                        type="text"
-                        className=""
-                        id="title"
-                        value={this.state.post}
-                        name="title"
-                        onChange={this.changeInputHandler}
-                    />
+        const allPosts:any = this.props.posts || []
+        console.log(this.props)
+        if (!this.props.app.loading) {
+            return(
+                <div>
+                    <form onSubmit={this.submitHandler}>
+                        <div className="">
+                            <label htmlFor="title">Заголовок поста</label>
+                            <input
+                                type="text"
+                                className=""
+                                id="title"
+                                value={this.state.post}
+                                name="title"
+                                onChange={this.changeInputHandler}
+                            />
+                        </div>
+                        <button className="btn btn-success" type="submit">Создать</button>
+                    </form>
+                    <div>
+                        Получить посты!!!
+                        {allPosts.posts.map((item:any) =>
+                            <div key={item.id} className="component1_posts-box">
+                                <div className="component1_posts-name">
+                                    {item.name}
+                                </div>
+                                <div className="component1_posts-attenuation_level">
+                                    {item.attenuation_level}
+                                </div>
+                                <div className="component1_description">
+                                    {item.description}
+                                </div>
+                            </div>)}
+                    </div>
                 </div>
-                <button className="btn btn-success" type="submit">Создать</button>
-            </form>
-        )
+            )
+        }
+        else {
+            return(
+            <div>
+                <CircularIndeterminate />
+            </div>
+            )
+        }
     }
 }
 
 const mapDispatchToProps = {
-    createPost
+    createPost, fetchPosts, showLoader, hideLoader
 }
 
-// const mapStateToProps = (state: props) => ({ //стейт редакса
-//     posts: state.createPost
-// });
+const mapStateToProps = (state: any) => ({ //стейт редакса
+    posts: state.posts,
+    app: state.app
+});
 
-//null - это mapStateToProps
-
-export default connect(null, mapDispatchToProps)(Component1)
+export default connect(mapStateToProps, mapDispatchToProps)(Component1)

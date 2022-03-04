@@ -27,8 +27,6 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(
 
 saga.run(sagaWatcher)
 
-
-
 ReactDOM.render(
   <React.StrictMode>
         <Provider store={store}>

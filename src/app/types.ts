@@ -1,5 +1,5 @@
 export const ACTION_1 = 'POSTS/ACTION_1'
-export const ACTION_2 = 'POSTS/ACTION_2'
+export const PUT_POSTS = 'POSTS/PUT_POSTS'
 export const REQUEST_POSTS = 'POST/REQUEST_POSTS'
 
 export const SHOW_LOADER = 'APP/SHOW_LOADER'

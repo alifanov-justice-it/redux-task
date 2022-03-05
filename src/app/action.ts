@@ -1,4 +1,4 @@
-import {ACTION_1, ACTION_2, REQUEST_POSTS, HIDE_LOADER, SHOW_LOADER} from "./types";
+import {ACTION_1, REQUEST_POSTS, HIDE_LOADER, SHOW_LOADER} from "./types";
 
 export function createPost(post: any): any {
     return {
@@ -25,13 +25,13 @@ export function fetchPosts(): any {
     // }
 }
 
-export function showLoader():any {
+export function showLoader() {
     return {
         type: SHOW_LOADER,
     }
 }
 
-export function hideLoader():any {
+export function hideLoader() {
     return {
         type: HIDE_LOADER,
     }

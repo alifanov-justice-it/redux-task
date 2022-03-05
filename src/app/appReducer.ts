@@ -4,7 +4,7 @@ const initialState = {
     loading: false
 }
 
-export const appReducer = (state:any = initialState,action:any):any => {
+export const appReducer = (state: {loading: boolean} = initialState,action: { type: string }) => {
     switch (action.type) {
         case SHOW_LOADER:
             return{...state, loading: true}

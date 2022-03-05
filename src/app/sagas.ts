@@ -1,5 +1,5 @@
 import {takeEvery, put,call} from 'redux-saga/effects'
-import {ACTION_2, REQUEST_POSTS} from "./types";
+import {PUT_POSTS, REQUEST_POSTS} from "./types";
 import {hideLoader, showLoader} from "./action";
 
 export function* sagaWatcher() {
@@ -10,7 +10,7 @@ function* sagaWorker():any {
     try{
         yield put(showLoader())
         const payload = yield call(fetchPosts)
-        yield put({type: ACTION_2, payload})
+        yield put({type: PUT_POSTS, payload})
         yield put(hideLoader())
     }
     catch (e) {

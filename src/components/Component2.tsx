@@ -1,10 +1,93 @@
-import React, {useState, useEffect} from "react";
-import {connect, useSelector, useDispatch} from 'react-redux'
-import {createPost, fetchPosts, hideLoader, showLoader} from '../app/action'
+import React, {useEffect} from "react";
+import {useSelector, useDispatch} from 'react-redux'
+import {fetchPosts} from '../app/action'
 import BasicTable from './Table'
+import DataTable from './Table2'
 
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+
+
+interface IState {
+    app: {
+        loading : boolean
+    }
+    posts: {
+        posts: IPosts[] | []
+    }
+}
+
+export interface IPosts {
+    abv: number,
+    attenuation_level: number,
+    boil_volume: {
+        unit: string,
+        value: number
+    },
+    brewers_tips: string,
+    contributed_by: string,
+    description: string,
+    ebc: number,
+    first_brewed: string,
+    food_pairing: [
+        string
+    ],
+    ibu: number,
+    id: number,
+    image_url: string,
+    ingredients: {
+        hops: [
+            {
+                add: string,
+                amount: {
+                    unit: string,
+                    value: number
+                },
+                attribute: string,
+                name: string
+            }
+        ],
+        malt: [
+            {
+                amount: {
+                    unit: string,
+                    value: number
+                },
+                name: string
+            }
+        ],
+        yeast: string,
+    },
+    method:{
+        fermentation: {
+            temp: {
+                unit: string,
+                value: number
+            }
+        }
+        mash_temp: [
+            {
+                duration: number,
+                temp: {
+                    unit: string,
+                    value: number
+                }
+            }
+        ],
+        twist: null
+    },
+    name: string,
+    ph: number,
+    srm: number,
+    tagline: string,
+    target_fg: number,
+    target_og: number,
+    volume: {
+        unit: string,
+        value: 20
+    }
+}
+
 
 
 function CircularIndeterminate() {
@@ -18,26 +101,29 @@ function CircularIndeterminate() {
 export default function Component2() {
     const dispatch = useDispatch();
 
-    const app:any = useSelector(((state:any) => state))
-    console.log(app)
+    const posts = useSelector(((state: IState) => state.posts.posts))
 
-    const posts:any = useSelector(((state:any) => state.posts))
+    const app = useSelector(((state: IState) => state.app))
 
     useEffect(() => {
         dispatch(fetchPosts())
         }, []
     )
 
-    if(app.loading) {
+    if(app.loading === true) {
         return (
             <CircularIndeterminate />
         )
     }
-    return(
-        <div>
+    else{
+        return(
             <div>
-                <BasicTable data={posts}/>
+                <div>
+                    {/*<BasicTable data={posts}/>*/}
+                    <DataTable posts={posts}/>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+
 }

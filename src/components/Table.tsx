@@ -33,7 +33,6 @@ export default function BasicTable({data}:any) {
                         <TableCell align="right">ABV</TableCell>
                         <TableCell align="right">IBU</TableCell>
                         <TableCell align="right">Bear Image</TableCell>
-
                     </TableRow>
                 </TableHead>
                 <TableBody>

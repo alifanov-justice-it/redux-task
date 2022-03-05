@@ -1,4 +1,4 @@
-import {ACTION_1, ACTION_2} from "./types";
+import {ACTION_1, PUT_POSTS} from "./types";
 
 const initialState = {
     posts: [],
@@ -15,7 +15,7 @@ export default function postsReducer(
     switch (action.type) {
         case ACTION_1:
             return {...state, post: action.payload};
-        case ACTION_2:
+        case PUT_POSTS:
             return {...state, posts: action.payload};
         default:
             return state;

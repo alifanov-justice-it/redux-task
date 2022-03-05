@@ -10,9 +10,13 @@ import Paper from '@mui/material/Paper';
 function createData(
     Name: string,
     Description: string,
-    BearImage: string,
+    Tagline: string,
+    First_brewed: string,
+    ABV: string,
+    IBU: string,
+    BearImage: string
 ) {
-    return { Name, Description, BearImage };
+    return { Name, Description, BearImage, Tagline, First_brewed, ABV, IBU };
 }
 
 export default function BasicTable({data}:any) {
@@ -24,6 +28,10 @@ export default function BasicTable({data}:any) {
                     <TableRow>
                         <TableCell>Name</TableCell>
                         <TableCell align="right">Description</TableCell>
+                        <TableCell align="right">Tagline</TableCell>
+                        <TableCell align="right">First_brewed</TableCell>
+                        <TableCell align="right">ABV</TableCell>
+                        <TableCell align="right">IBU</TableCell>
                         <TableCell align="right">Bear Image</TableCell>
 
                     </TableRow>
@@ -38,6 +46,10 @@ export default function BasicTable({data}:any) {
                                 {row.name}
                             </TableCell>
                             <TableCell align="right">{row.description}</TableCell>
+                            <TableCell align="right">{row.tagline}</TableCell>
+                            <TableCell align="right">{row.first_brewed}</TableCell>
+                            <TableCell align="right">{row.abv}</TableCell>
+                            <TableCell align="right">{row.ibu}</TableCell>
                             <TableCell align="right">
                                 <img width={100} height={200} src={row.image_url} />
                             </TableCell>

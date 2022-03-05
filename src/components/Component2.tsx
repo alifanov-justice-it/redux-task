@@ -17,12 +17,16 @@ function CircularIndeterminate() {
 
 export default function Component2() {
     const dispatch = useDispatch();
+
+    const app:any = useSelector(((state:any) => state))
+    console.log(app)
+
+    const posts:any = useSelector(((state:any) => state.posts))
+
     useEffect(() => {
         dispatch(fetchPosts())
         }, []
     )
-    const app:any = useSelector(((state:any) => state.app))
-    const posts:any = useSelector(((state:any) => state.posts))
 
     if(app.loading) {
         return (
